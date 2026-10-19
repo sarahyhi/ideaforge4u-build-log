@@ -6,6 +6,8 @@ IdeaForge helps solo founders and product managers turn a raw idea into a struct
 
 Live preview: https://ideaforge4u.lovable.app
 
+Build log: [BUILD_LOG.md](https://github.com/sarahyhi/ideaforge4u-build-log/blob/main/BUILD_LOG.md)
+
 ## How it works
 
 Three modes, one flow:
@@ -23,3 +25,9 @@ Three modes, one flow:
 ## Status
 
 Prototype. Core functionality is built but not yet backed by persistent storage. Next: adding a database and login so users can actually save their ideas.
+
+## Build log
+
+Every change to IdeaForge — what changed, when, and the decision behind it — is recorded in the [build log](https://github.com/sarahyhi/ideaforge4u-build-log/blob/main/BUILD_LOG.md). It covers the path from the original spec through the hackathon build to later iterations, along with current limitations and candidate next steps.
+
+The code itself is private; the build log is public so the process can be followed and reused.
