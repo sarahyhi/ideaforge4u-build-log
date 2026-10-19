@@ -55,14 +55,29 @@ Git commits record *what* changed in the code; this log records the decisions be
 | 08-05 14:21 | Fixed: GA received no data | The tag loaded but sent no hits, due to a formatting bug in how events were passed to Google's script. Fixed and verified. |
 | 08-05 17:23 | Security update | Upgraded framework packages to resolve critical and high-severity dependency vulnerabilities. |
 
-## Phase 5 — Documentation (2026-08-12 → )
+## Phase 5 — Documentation (2026-08-12)
 
 | Date / time | Change | Notes |
 |---|---|---|
 | 08-12 17:26 | Added README | — |
 | 08-12 17:29 | README formatting fix | — |
-| 10-19 | Architecture review | Reverse-engineered the build from code and build history to understand how each part works and where to optimize. |
-| 10-19 | Added this build log to the repo | Commits record *what* changed; this log records *why*. |
+
+## Phase 6 — Build log & public sync (2026-10-19)
+
+| Time | Change | Notes |
+|---|---|---|
+| 21:00 | Architecture review | Reverse-engineered the build from the code and the full Lovable build history, to understand how each part works and where to optimize. Found that the Miro → Lovable integration never connected, and that the first version's AI was simulated. |
+| 21:15 | **Decision:** keep a timeline-style build log, in English | Short entries in the style of per-push records, written to be shared publicly. |
+| 21:33 | Added this build log to the private repo (`docs/BUILD_LOG.md`) | Commits record *what* changed; this log records *why*. |
+| 21:44 | Created the public repo `ideaforge4u-build-log` | **Decision:** only the README and build log are public; the code stays private. The public version leaves out prompt text and endpoint URLs. |
+| 21:46 | **Decision:** publish through a pull request, not directly | Every update opens (or updates) a PR in the public repo; nothing goes public until it is reviewed and merged. |
+| 21:58 | Set up the access token for the sync | Fine-grained token, limited to the public repo (contents and pull requests only). |
+| 22:02 | Tried GitHub Copilot to add the sync workflow | It could not write to the repo from its session, so the workflow was added with Claude instead. |
+| 22:13 | Sync workflow added via PR in the private repo; merged 22:15 | A GitHub Action copies `README.md` and `docs/BUILD_LOG.md` to the public repo whenever either changes. |
+| 22:17 | Fixed: first sync run failed | The token had been saved as a secret in the public repo instead of the private one. Moved it; the next run succeeded. |
+| 22:22 | First public PR merged | README and build log published. |
+| 22:25 | README now links to the build log | The link points to the public file, so it works from both repos. Confirmed that a second change updates the open PR instead of opening a new one. |
+| 22:36 | Logged today's work in this build log | — |
 
 ---
 
@@ -73,6 +88,7 @@ Git commits record *what* changed in the code; this log records the decisions be
 - **Structure** — AI writes a Markdown document: Problem Statement, Target User, Solution Approach, 5 Key Ideas, Research Notes, Next Steps. Downloadable as `.md`.
 - **Analytics** — GA4 with funnel events.
 - **Agent access** — Public MCP endpoint with two tools.
+- **Build log** — Kept in the private repo; README and build log sync to a public repo through a reviewed pull request.
 
 ## Known limitations
 
